@@ -1,10 +1,22 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { ref, onMounted } from 'vue'
+const aray = ref('')
+const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=500'
+async function s() {
+  let a = await fetch(link)
+  let b = await a.json()
+  aray.value = b
+}
+onMounted(() => {
+  s()
+})
 </script>
 
 <template>
-  <header>
+  <button @click="console.log(aray)">Click</button>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -17,7 +29,7 @@ import HelloWorld from './components/HelloWorld.vue'
     </div>
   </header>
 
-  <RouterView />
+  <RouterView /> -->
 </template>
 
 <style scoped>
