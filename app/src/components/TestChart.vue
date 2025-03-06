@@ -1,70 +1,61 @@
 <template>
-  <div>
-    <!-- Pass the data and options as props to the LineChart -->
-    <LineChart :data="chartData" :options="chartOptions" />
-  </div>
+  <Doughnut :data="data" :options="options" />
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-// Import Line from vue-chart-3
-import { Line } from 'vue-chart-3'
+<script setup>
+import { reactive } from 'vue'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'vue-chartjs'
 
-// Import necessary chart.js components and register them
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-} from 'chart.js'
+// Register necessary Chart.js components
+ChartJS.register(ArcElement, Tooltip, Legend)
 
-ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale)
+// Define chart data and options directly
+const data = reactive({
+  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+})
 
-export default defineComponent({
-  name: 'TestChart',
-  components: {
-    LineChart: Line, // Use the Line component from vue-chart-3
+const options = reactive({
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    tooltip: {
+      mode: 'index',
+      intersect: false,
+    },
   },
-  data() {
-    return {
-      // Sample chart data
-      chartData: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-        datasets: [
-          {
-            label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55],
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1,
-          },
-        ],
+  scales: {
+    x: {
+      ticks: {
+        autoSkip: true,
+        maxTicksLimit: 6,
       },
-      // Chart options
-      chartOptions: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false,
-          },
-        },
-        scales: {
-          x: {
-            ticks: {
-              autoSkip: true,
-              maxTicksLimit: 6,
-            },
-          },
-        },
-      },
-    }
+    },
   },
 })
 </script>
