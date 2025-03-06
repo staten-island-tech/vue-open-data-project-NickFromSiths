@@ -1,44 +1,48 @@
 <template>
-  <Doughnut :data="data" :options="options" />
+  <div>
+    <Line :data="chartData" :options="chartOptions" />
+  </div>
 </template>
 
 <script setup>
-import { reactive } from 'vue'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Doughnut } from 'vue-chartjs'
+import { ref } from 'vue' // Import the ref function
+import { Line } from 'vue-chartjs' // Import the Line chart component
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js'
+// Register required components of Chart.js
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement, // Register PointElement
+  Title,
+  Tooltip,
+  Legend,
+)
 
-// Register necessary Chart.js components
-ChartJS.register(ArcElement, Tooltip, Legend)
-
-// Define chart data and options directly
-const data = reactive({
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+// Chart data and options are defined as reactive variables
+const chartData = ref({
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
+      label: 'My First Dataset',
+      data: [65, 59, 80, 81, 56, 55, 40],
+      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      fill: true,
     },
   ],
 })
 
-const options = reactive({
+const chartOptions = ref({
   responsive: true,
   plugins: {
     legend: {
@@ -49,13 +53,9 @@ const options = reactive({
       intersect: false,
     },
   },
-  scales: {
-    x: {
-      ticks: {
-        autoSkip: true,
-        maxTicksLimit: 6,
-      },
-    },
-  },
 })
 </script>
+
+<style scoped>
+/* Style your chart container if necessary */
+</style>
