@@ -11,5 +11,5 @@ async function s() {
   aray = b;
 }
 s();
-aray.sort();
+// aray.sort();
 console.log(aray);

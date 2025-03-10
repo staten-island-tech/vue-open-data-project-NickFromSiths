@@ -1,19 +1,33 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+// import { RouterLink, RouterView } from 'vue-router'
+// import HelloWorld from './components/HelloWorld.vue'
 import { ref, onMounted } from 'vue'
 import TestChart from './components/TestChart.vue'
 const aray = ref('')
-const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=500'
+const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=100'
 async function s() {
   let a = await fetch(link)
   let b = await a.json()
   aray.value = b
+  console.log(aray)
 }
 onMounted(() => {
   s()
 })
+function a() {
+  aray.value.forEach((e) => {
+    e.date_of_census = e.date_of_census.slice(0, 10)
+  })
+}
 </script>
+
+<template>
+  <button @click="(a(), console.log(aray))">Click</button>
+  <TestChart></TestChart>
+</template>
+
+<style scoped></style>
+
 <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
@@ -27,14 +41,9 @@ onMounted(() => {
     </div>
   </header>
 
-  <RouterView /> -->
-<template>
-  <button @click="console.log(aray)">Click</button>
-  <TestChart></TestChart>
-</template>
+<RouterView /> -->
 
-<style scoped>
-/* header {
+<!-- /* header {
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -94,5 +103,4 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-} */
-</style>
+} */ -->
