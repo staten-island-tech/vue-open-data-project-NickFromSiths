@@ -6,22 +6,6 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  array: Array,
-  date: String,
-  a_families: String,
-  a_c_families: String,
-  c_families: String,
-  families_c: String,
-  i_in_families: String,
-  s_m_adult: String,
-  s_f_adult: String,
-  total_a: String,
-  total_c: String,
-  total_i: String,
-  total_s_a: String,
-})
-
 import { ref, reactive } from 'vue' // Import the ref function
 import { Line } from 'vue-chartjs' // Import the Line chart component
 import {
@@ -45,6 +29,25 @@ ChartJS.register(
   Legend,
 )
 
+// items: {
+//     type: Array,
+//     required: true
+//   }
+const props = defineProps({
+  array: Object,
+  date: String,
+  a_families: String,
+  a_c_families: String,
+  c_families: String,
+  families_c: String,
+  i_in_families: String,
+  s_m_adult: String,
+  s_f_adult: String,
+  total_a: String,
+  total_c: String,
+  total_i: String,
+  total_s_a: String,
+})
 // Chart data and options are defined as reactive variables
 const chartData = reactive({
   labels: 'e',
