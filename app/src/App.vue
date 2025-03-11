@@ -23,7 +23,7 @@ function a() {
 
 <template>
   <button @click="(a(), console.log(aray))">Click</button>
-  <TestChart></TestChart>
+  <TestChart :data="aray"></TestChart>
 </template>
 
 <style scoped></style>

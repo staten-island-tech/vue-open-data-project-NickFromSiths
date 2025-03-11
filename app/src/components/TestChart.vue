@@ -1,11 +1,28 @@
 <template>
   <div>
     <Line :data="chartData" :options="chartOptions" />
+    <button @click="console.log(props.date)">{{ array }}</button>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue' // Import the ref function
+const props = defineProps({
+  array: Array,
+  date: String,
+  a_families: String,
+  a_c_families: String,
+  c_families: String,
+  families_c: String,
+  i_in_families: String,
+  s_m_adult: String,
+  s_f_adult: String,
+  total_a: String,
+  total_c: String,
+  total_i: String,
+  total_s_a: String,
+})
+
+import { ref, reactive } from 'vue' // Import the ref function
 import { Line } from 'vue-chartjs' // Import the Line chart component
 import {
   Chart as ChartJS,
@@ -29,19 +46,19 @@ ChartJS.register(
 )
 
 // Chart data and options are defined as reactive variables
-const chartData = ref({
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+const chartData = reactive({
+  labels: 'e',
   datasets: [
     {
-      label: 'My First Dataset',
-      data: [65, 59, 80, 81, 56, 55, 40],
+      label: 'Data',
+      data: props.array,
       borderColor: 'rgba(75, 192, 192, 1)',
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
       fill: true,
     },
   ],
 })
-
+console.log(props.date)
 const chartOptions = ref({
   responsive: true,
   plugins: {
