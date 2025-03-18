@@ -29,25 +29,38 @@ ChartJS.register(
   Legend,
 )
 
-// items: {
-//     type: Array,
-//     required: true
-//   }
+// const props = defineProps({
+//   array: Object,
+//   date: String,
+//   a_families: String,
+//   a_c_families: String,
+//   c_families: String,
+//   families_c: String,
+//   i_in_families: String,
+//   s_m_adult: String,
+//   s_f_adult: String,
+//   total_a: String,
+//   total_c: String,
+//   total_i: String,
+//   total_s_a: String,
+// })
 const props = defineProps({
-  array: Object,
-  date: String,
-  a_families: String,
-  a_c_families: String,
-  c_families: String,
-  families_c: String,
-  i_in_families: String,
-  s_m_adult: String,
-  s_f_adult: String,
-  total_a: String,
-  total_c: String,
-  total_i: String,
-  total_s_a: String,
+  items: {
+    type: Array,
+    required: true,
+  },
 })
+console.log(props.items)
+
+// if (Array.isArray(props.items)) {
+//   console.log('items is an array')
+// } else {
+//   console.log('items is not an array')
+// }
+
+// let dates = []
+// props.items.forEach((e) => dates.push(e.date_of_census))
+// console.log(dates)
 // Chart data and options are defined as reactive variables
 const chartData = reactive({
   labels: 'e',
