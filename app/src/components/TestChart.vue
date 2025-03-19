@@ -1,7 +1,8 @@
 <template>
   <div>
     <Line :data="chartData" :options="chartOptions" />
-    <button @click="console.log(props.date)">{{ array }}</button>
+    <button @click="console.log(props.items)">click</button>
+    <div></div>
   </div>
 </template>
 
@@ -28,53 +29,135 @@ ChartJS.register(
   Tooltip,
   Legend,
 )
+const dateData = []
+const tiisData = []
+const taisData = []
+const tcisData = []
+const smisData = []
+const swisData = []
+const tsaisData = []
+const fwcData = []
+const aifwcData = []
+const cifwcData = []
+const tiifwcData = []
 
-// const props = defineProps({
-//   array: Object,
-//   date: String,
-//   a_families: String,
-//   a_c_families: String,
-//   c_families: String,
-//   families_c: String,
-//   i_in_families: String,
-//   s_m_adult: String,
-//   s_f_adult: String,
-//   total_a: String,
-//   total_c: String,
-//   total_i: String,
-//   total_s_a: String,
-// })
+const afisData = []
+const iiafData = []
+
 const props = defineProps({
   items: {
     type: Array,
     required: true,
   },
 })
-console.log(props.items)
 
-// if (Array.isArray(props.items)) {
-//   console.log('items is an array')
-// } else {
-//   console.log('items is not an array')
-// }
+props.items.forEach((element) => {
+  console.log('works')
+  dateData.push(element.date_of_census.slice(0, 10))
+  tiisData.push(element.total_individuals_in_shelter)
+  taisData.push(element.total_adults_in_shelter)
+  tcisData.push(element.total_children_in_shelter)
+  smisData.push(element.single_adult_men_in_shelter)
+  swisData.push(element.single_adult_women_in_shelter)
+  tsaisData.push(element.total_single_adults_in_shelter)
+  fwcData.push(element.families_with_children_in_shelter)
+  aifwcData.push(element.adults_in_families_with_children_in_shelter)
+  cifwcData.push(element.children_in_families_with_children_in_shelter)
+  tiifwcData.push(element.total_individuals_in_families_with_children_in_shelter_)
+  afisData.push(element.adult_families_in_shelter)
+  iiafData.push(element.individuals_in_adult_families_in_shelter)
+})
 
-// let dates = []
-// props.items.forEach((e) => dates.push(e.date_of_census))
-// console.log(dates)
-// Chart data and options are defined as reactive variables
 const chartData = reactive({
-  labels: 'e',
+  labels: dateData,
   datasets: [
     {
-      label: 'Data',
-      data: props.array,
+      label: 'Total Individuals',
+      data: tiisData,
       borderColor: 'rgba(75, 192, 192, 1)',
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
       fill: true,
     },
+    {
+      label: 'Total Adults',
+      data: taisData,
+      borderColor: 'rgba(75, 192, 0, 1)',
+      backgroundColor: 'rgba(75, 192, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Single Men',
+      data: smisData,
+      borderColor: 'rgba(175, 29, 70, 1)',
+      backgroundColor: 'rgba(175, 29, 70, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Single Women',
+      data: swisData,
+      borderColor: 'rgba(175, 192, 70, 1)',
+      backgroundColor: 'rgba(175, 192, 70, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Total Children',
+      data: tcisData,
+      borderColor: 'rgba(175, 100, 0, 1)',
+      backgroundColor: 'rgba(175, 100, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Total Single Adults',
+      data: tsaisData,
+      borderColor: 'rgba(175, 192, 0, 1)',
+      backgroundColor: 'rgba(175, 192, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Families with Children',
+      data: fwcData,
+      borderColor: 'rgba(75, 100, 0, 1)',
+      backgroundColor: 'rgba(75, 100, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Adults (in families with children)',
+      data: aifwcData,
+      borderColor: 'rgba(255, 192, 0, 1)',
+      backgroundColor: 'rgba(255, 192, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Children (in families)',
+      data: cifwcData,
+      borderColor: 'rgba(75, 192, 0, 1)',
+      backgroundColor: 'rgba(75, 192, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Total Individuals (in families with children)',
+      data: tiifwcData,
+      borderColor: 'rgba(75, 192, 0, 1)',
+      backgroundColor: 'rgba(75, 192, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Adult Families',
+      data: afisData,
+      borderColor: 'rgba(75, 192, 0, 1)',
+      backgroundColor: 'rgba(75, 192, 0, 0.2)',
+      fill: true,
+    },
+    {
+      label: 'Individuals (in adult families)',
+      data: iiafData,
+      borderColor: 'rgba(75, 192, 0, 1)',
+      backgroundColor: 'rgba(75, 192, 0, 0.2)',
+      fill: true,
+    },
   ],
 })
-console.log(props.date)
+
 const chartOptions = ref({
   responsive: true,
   plugins: {
