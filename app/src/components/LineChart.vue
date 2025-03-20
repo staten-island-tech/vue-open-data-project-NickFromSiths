@@ -1,34 +1,14 @@
 <template>
   <div>
     <Line :data="chartData" :options="chartOptions" />
-    <button @click="console.log(props.items)">click</button>
+    <button @click="console.log(props.items)">array</button>
     <div></div>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue' // Import the ref function
-import { Line } from 'vue-chartjs' // Import the Line chart component
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js'
-// Register required components of Chart.js
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  LineElement,
-  PointElement, // Register PointElement
-  Title,
-  Tooltip,
-  Legend,
-)
+
 const dateData = []
 const tiisData = []
 const taisData = []
@@ -52,7 +32,6 @@ const props = defineProps({
 })
 
 props.items.forEach((element) => {
-  console.log('works')
   dateData.push(element.date_of_census.slice(0, 10))
   tiisData.push(element.total_individuals_in_shelter)
   taisData.push(element.total_adults_in_shelter)
@@ -68,89 +47,111 @@ props.items.forEach((element) => {
   iiafData.push(element.individuals_in_adult_families_in_shelter)
 })
 
+import { Line } from 'vue-chartjs' // Import the Line chart component
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js'
+// Register required components of Chart.js
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement, // Register PointElement
+  Title,
+  Tooltip,
+  Legend,
+)
+
 const chartData = reactive({
-  labels: dateData,
+  labels: dateData.reverse(),
   datasets: [
     {
       label: 'Total Individuals',
-      data: tiisData,
+      data: tiisData.reverse(),
       borderColor: 'rgba(75, 192, 192, 1)',
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
       fill: true,
     },
     {
       label: 'Total Adults',
-      data: taisData,
+      data: taisData.reverse(),
       borderColor: 'rgba(75, 192, 0, 1)',
       backgroundColor: 'rgba(75, 192, 0, 0.2)',
       fill: true,
     },
     {
       label: 'Single Men',
-      data: smisData,
+      data: smisData.reverse(),
       borderColor: 'rgba(175, 29, 70, 1)',
       backgroundColor: 'rgba(175, 29, 70, 0.2)',
       fill: true,
     },
     {
       label: 'Single Women',
-      data: swisData,
+      data: swisData.reverse(),
       borderColor: 'rgba(175, 192, 70, 1)',
       backgroundColor: 'rgba(175, 192, 70, 0.2)',
       fill: true,
     },
     {
       label: 'Total Children',
-      data: tcisData,
+      data: tcisData.reverse(),
       borderColor: 'rgba(175, 100, 0, 1)',
       backgroundColor: 'rgba(175, 100, 0, 0.2)',
       fill: true,
     },
     {
       label: 'Total Single Adults',
-      data: tsaisData,
+      data: tsaisData.reverse(),
       borderColor: 'rgba(175, 192, 0, 1)',
       backgroundColor: 'rgba(175, 192, 0, 0.2)',
       fill: true,
     },
     {
       label: 'Families with Children',
-      data: fwcData,
+      data: fwcData.reverse(),
       borderColor: 'rgba(75, 100, 0, 1)',
       backgroundColor: 'rgba(75, 100, 0, 0.2)',
       fill: true,
     },
     {
       label: 'Adults (in families with children)',
-      data: aifwcData,
+      data: aifwcData.reverse(),
       borderColor: 'rgba(255, 192, 0, 1)',
       backgroundColor: 'rgba(255, 192, 0, 0.2)',
       fill: true,
     },
-    {
-      label: 'Children (in families)',
-      data: cifwcData,
-      borderColor: 'rgba(75, 192, 0, 1)',
-      backgroundColor: 'rgba(75, 192, 0, 0.2)',
-      fill: true,
-    },
+    // {
+    //   label: 'Children (in families)',
+    //   data: cifwcData.reverse(),
+    //   borderColor: 'rgba(75, 192, 0, 1)',
+    //   backgroundColor: 'rgba(75, 192, 0, 0.2)',
+    //   fill: true,
+    // },
     {
       label: 'Total Individuals (in families with children)',
-      data: tiifwcData,
+      data: tiifwcData.reverse(),
       borderColor: 'rgba(75, 192, 0, 1)',
       backgroundColor: 'rgba(75, 192, 0, 0.2)',
       fill: true,
     },
     {
       label: 'Adult Families',
-      data: afisData,
+      data: afisData.reverse(),
       borderColor: 'rgba(75, 192, 0, 1)',
       backgroundColor: 'rgba(75, 192, 0, 0.2)',
       fill: true,
     },
     {
       label: 'Individuals (in adult families)',
-      data: iiafData,
+      data: iiafData.reverse(),
       borderColor: 'rgba(75, 192, 0, 1)',
       backgroundColor: 'rgba(75, 192, 0, 0.2)',
       fill: true,
@@ -172,6 +173,4 @@ const chartOptions = ref({
 })
 </script>
 
-<style scoped>
-/* Style your chart container if necessary */
-</style>
+<style scoped></style>

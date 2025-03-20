@@ -2,28 +2,23 @@
 // import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
 import { ref, onMounted } from 'vue'
-import TestChart from './components/TestChart.vue'
+import TestChart from './components/LineChart.vue'
 const aray = ref('')
 const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=100'
 async function s() {
   let a = await fetch(link)
   let b = await a.json()
   aray.value = b
-  console.log(aray)
 }
 onMounted(() => {
   s()
 })
-function a() {
-  aray.value.forEach((e) => {
-    e.date_of_census = e.date_of_census.slice(0, 10)
-  })
-}
 </script>
 
 <template>
-  <button @click="(a(), console.log(aray))">Click</button>
-  <TestChart :items="aray"></TestChart>
+  <div v-if="aray.length > 0">
+    <TestChart :items="aray"></TestChart>
+  </div>
 </template>
 
 <style scoped></style>
