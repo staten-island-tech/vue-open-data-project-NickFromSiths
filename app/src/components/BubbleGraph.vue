@@ -48,44 +48,66 @@ props.items.forEach((element) => {
 })
 
 const chartData = reactive({
+  labels: dateData,
   datasets: [
     {
-      label: 'Data One',
-      backgroundColor: '#f87979',
-      data: [
-        {
-          x: 20,
-          y: 25,
-          r: 5,
-        },
-        {
-          x: 40,
-          y: 10,
-          r: 10,
-        },
-        {
-          x: 30,
-          y: 22,
-          r: 30,
-        },
-      ],
+      label: 'Total Individuals',
+      backgroundColor: '#6cadf4',
+      data: [],
+    },
+    {
+      label: 'Men',
+      backgroundColor: '#59a570',
+      data: [],
+    },
+    {
+      label: 'Women',
+      backgroundColor: '#59a570',
+      data: [],
     },
   ],
 })
-function e() {
-  // for (let i = 0; i < dateData.length; i++) {
-  //   console.log(i)
-  // }
-  for (let i = 0; i < dateData.length; i++) {
-    console.log(i)
-    const d = { x: '', y: '', r: '' }
-    d.x = dateData[i]
-    d.y = tiisData[i]
-    d.r = tiisData[i] / 1000
-    console.log(d)
-    chartData.datasets[0].data.push(d)
-    console.log('?')
+
+let tnumber = null
+for (let i = 0; i < dateData.length; i++) {
+  if ((tiisData[i] - 83000) / 370 > 1) {
+    tnumber = (tiisData[i] - 83000) / 1000
+  } else {
+    tnumber = 1
   }
+  const d = { x: '', y: '', r: '' }
+  d.x = (new Date(dateData[i]) - 1702944000000) / 86400000
+  d.y = tiisData[i]
+  d.r = tnumber
+  chartData.datasets[0].data.push(d)
+}
+
+let mnumber = null
+for (let i = 0; i < dateData.length; i++) {
+  if ((smisData[i] - 15000) / 250 > 1) {
+    mnumber = (smisData[i] - 15000) / 250
+  } else {
+    mnumber = 1
+  }
+  const e = { x: '', y: '', r: '' }
+  e.x = (new Date(dateData[i]) - 1702944000000) / 86400000
+  e.y = smisData[i]
+  e.r = mnumber
+  chartData.datasets[1].data.push(e)
+}
+
+let wnumber = null
+for (let i = 0; i < dateData.length; i++) {
+  if ((swisData[i] - 5000) / 100 > 1) {
+    wnumber = (swisData[i] - 5000) / 100
+  } else {
+    wnumber = 1
+  }
+  const f = { x: '', y: '', r: '' }
+  f.x = (new Date(dateData[i]) - 1702944000000) / 86400000
+  f.y = swisData[i]
+  f.r = wnumber
+  chartData.datasets[2].data.push(f)
 }
 
 const options = ref({
@@ -95,99 +117,3 @@ const options = ref({
 </script>
 
 <style scoped></style>
-<!-- // {
-    //   label: 'Data Two',
-    //   backgroundColor: '#7C8CF8',
-    //   data: [
-    //     {
-    //       x: 10,
-    //       y: 30,
-    //       r: 15,
-    //     },
-    //     {
-    //       x: 20,
-    //       y: 20,
-    //       r: 10,
-    //     },
-    //     {
-    //       x: 15,
-    //       y: 8,
-    //       r: 30,
-    //     },
-    //   ],
-    // }, -->
-<!-- The error you're seeing, where it says .push is not a function, suggests that the data property in your chartData.datasets[0] is not actually an array at the time you're trying to push new elements to it.
-
-    To troubleshoot and fix this issue, here are a few things to check:
-    
-    1. Confirm chartData.datasets[0].data is an Array
-    Make sure that the data property inside chartData.datasets[0] is indeed an array before attempting to use .push. You can log it to confirm:
-    
-    javascript
-    Copy
-    console.log(Array.isArray(chartData.datasets[0].data)); // This should log true
-    If this returns false, then the data property might not be initialized correctly as an array. You could initialize it as an empty array if it’s not already an array:
-    
-    2. Ensure Initialization of data as an Array
-    Here’s how you could initialize the data array properly:
-    
-    javascript
-    Copy
-    const chartData = reactive({
-      datasets: [
-        {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [], // Ensure this is an empty array
-        },
-      ],
-    });
-    This ensures that chartData.datasets[0].data is an empty array when you start, and it can accept .push() calls.
-    
-    3. Update Your e() Function
-    Now, with the data property confirmed to be an array, your e() function should work without the .push is not a function error.
-    
-    Here’s your updated code:
-    
-    javascript
-    Copy
-    const chartData = reactive({
-      datasets: [
-        {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [], // Make sure this is an array
-        },
-      ],
-    });
-    
-    // Example of dateData and tiisData being defined
-    const dateData = [10, 20, 30]; // Example values
-    const tiisData = [1000, 2000, 3000]; // Example values
-    
-    function e() {
-      // Ensure chartData.datasets[0].data is an array before pushing
-      if (Array.isArray(chartData.datasets[0].data)) {
-        for (let i = 0; i < dateData.length; i++) {
-          const d = { x: '', y: '', r: '' };
-    
-          d.x = dateData[i]; // You might want to ensure this is a number
-          d.y = tiisData[i]; // You might want to ensure this is a number
-          d.r = tiisData[i] / 1000; // Adjust this formula as needed
-    
-          // Push the new data point into the chart's dataset
-          chartData.datasets[0].data.push(d);
-        }
-      } else {
-        console.error('Data is not an array');
-      }
-    }
-    Explanation:
-    Array Initialization: I’ve ensured that data in chartData.datasets[0] is always initialized as an empty array (data: []).
-    
-    Array Check: Before using .push(), we check if data is an array using Array.isArray(). This check can prevent the error if, for some reason, data is not an array.
-    
-    4. Vue Reactivity
-    Since you're using Vue's reactive, when you push new data points into chartData.datasets[0].data, the UI will automatically update, reflecting the changes.
-    
-    Let me know if that works or if you need any further clarification! -->
