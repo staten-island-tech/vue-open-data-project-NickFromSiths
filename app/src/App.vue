@@ -3,6 +3,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import { ref, onMounted } from 'vue'
 import TestChart from './components/LineChart.vue'
+import BubbleGraph from './components/BubbleGraph.vue'
 const aray = ref('')
 const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=100'
 async function s() {
@@ -18,6 +19,9 @@ onMounted(() => {
 <template>
   <div v-if="aray.length > 0">
     <TestChart :items="aray"></TestChart>
+  </div>
+  <div v-if="aray.length > 0">
+    <BubbleGraph :items="aray"></BubbleGraph>
   </div>
 </template>
 
