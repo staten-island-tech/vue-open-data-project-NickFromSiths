@@ -20,7 +20,6 @@ const fwcData = []
 const aifwcData = []
 const cifwcData = []
 const tiifwcData = []
-
 const afisData = []
 const iiafData = []
 
