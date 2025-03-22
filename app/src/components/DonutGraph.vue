@@ -1,17 +1,10 @@
 <template>
   <div v-if="aray.length > 0" class="container">
     <Doughnut :data="data" :options="options" />
-    <button @click="console.log(variable, aray)">work?</button>
-    <form @submit.prevent="(s(), console.log(aray))">
+    <button @click="console.log(aray)">work?</button>
+    <form @submit.prevent="submitted">
       <input v-model="variable" type="number" min="0" placeholder="Type index number here" />
-      <button
-        type="submit"
-        @click="
-          link = `https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=1&$offset=${variable}`
-        "
-      >
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
     <h1>{{ link }}</h1>
     <h3>{{ variable }}</h3>
@@ -33,6 +26,11 @@ async function s() {
 onMounted(() => {
   s()
 })
+
+function submitted() {
+  link = `https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=1&$offset=${variable.value}`
+  s()
+}
 
 const dateData = []
 const tiisData = []
