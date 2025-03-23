@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Line :data="chartData" :options="chartOptions" />
-    <button @click="console.log(props.items)">array</button>
-    <div></div>
+    <Line :data="chartData" :options="chartOptions" class="positioning" />
+    <!-- <button @click="console.log(props.items)">array</button> -->
   </div>
 </template>
 
@@ -172,4 +171,9 @@ const chartOptions = ref({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.positioning {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+</style>

@@ -1,12 +1,9 @@
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
 import { ref, onMounted } from 'vue'
-import TestChart from './components/LineChart.vue'
-import BubbleGraph from './components/BubbleGraph.vue'
-import DonutGraph from './components/DonutGraph.vue'
 const aray = ref('')
-const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=870'
+const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=367'
 async function s() {
   let a = await fetch(link)
   let b = await a.json()
@@ -18,35 +15,26 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="aray.length > 0">
-    <TestChart :items="aray"></TestChart>
-  </div>
-  <div v-if="aray.length > 0">
-    <BubbleGraph :items="aray"></BubbleGraph>
-  </div>
-  <div>
-    <DonutGraph></DonutGraph>
+  <div class="fullheight">
+    <h1>Homeless population</h1>
+    <div class="wrapper">
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/line">Line Graph</RouterLink>
+        <RouterLink to="/bubble">Bubble Graph</RouterLink>
+        <RouterLink to="/donut">Donut Graph</RouterLink>
+      </nav>
+    </div>
+
+    <RouterView :items="aray" />
   </div>
 </template>
 
-<style scoped></style>
-
-<!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-<RouterView /> -->
-
-<!-- /* header {
+<style scoped>
+.fullheight {
+  height: 90vh;
+}
+header {
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -64,23 +52,26 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: black;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active:hover {
   background-color: transparent;
 }
-
+a:hover {
+  color: skyblue;
+}
 nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  text-decoration: none;
 }
 
 nav a:first-of-type {
   border: 0;
 }
-
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -88,22 +79,18 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
   header .wrapper {
     display: flex;
-    place-items: flex-start;
+
     flex-wrap: wrap;
   }
 
   nav {
-    text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
 
     padding: 1rem 0;
     margin-top: 1rem;
   }
-} */ -->
+}
+</style>

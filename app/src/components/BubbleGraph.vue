@@ -1,6 +1,7 @@
 <template>
-  <div><button @click="e()">IUGHOIWYRGWRHG</button></div>
-  <Bubble :data="chartData" :options="options" />
+  <div>
+    <Bubble :data="chartData" :options="options" class="positioning" />
+  </div>
 </template>
 
 <script setup>
@@ -116,4 +117,9 @@ const options = ref({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.positioning {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+</style>

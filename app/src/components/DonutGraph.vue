@@ -1,15 +1,25 @@
 <template>
   <div v-if="aray.length > 0" class="container">
-    <Doughnut :data="data" :options="options" />
-    <button @click="console.log('')">work?</button>
-    <form @submit.prevent="submitted()">
-      <input v-model="variable" type="number" min="0" placeholder="Type index number here" />
-      <button type="submit">Submit</button>
-    </form>
-    <h1>{{ link }}</h1>
-    <h3>{{ variable }}</h3>
-    <h6>{{ dateData }}</h6>
-    <h6>{{ tiisData }}</h6>
+    <div class="fifty">
+      <Doughnut :data="data" :options="options" />
+    </div>
+    <!-- <button @click="console.log('')">work?</button> -->
+    <div class="margin">
+      <form @submit.prevent="submitted()">
+        <input v-model="variable" type="number" min="0" placeholder="Type index number here" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="right">
+      <h1>Data</h1>
+      <h3>Showing results for: {{ dateData }}</h3>
+      <h3>Total Individuals: {{ tiisData }}</h3>
+      <h3>Men: {{ smisData }}</h3>
+      <h3>Women: {{ swisData }}</h3>
+      <h3>Children: {{ tcisData }}</h3>
+      <h3>Adult Families: {{ afisData }}</h3>
+      <h6>i got no clue what this last one means</h6>
+    </div>
   </div>
 </template>
 
@@ -107,6 +117,24 @@ const options = ref({
 <style scoped>
 .container {
   height: 75vh;
-  width: 50%;
+
+  display: flex;
+  align-items: center;
+}
+.margin {
+  margin-left: 10rem;
+}
+.height {
+  height: 100%;
+}
+.right {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.fifty {
+  width: 600px;
 }
 </style>
