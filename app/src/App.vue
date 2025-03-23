@@ -6,7 +6,7 @@ import TestChart from './components/LineChart.vue'
 import BubbleGraph from './components/BubbleGraph.vue'
 import DonutGraph from './components/DonutGraph.vue'
 const aray = ref('')
-const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=367'
+const link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=870'
 async function s() {
   let a = await fetch(link)
   let b = await a.json()
