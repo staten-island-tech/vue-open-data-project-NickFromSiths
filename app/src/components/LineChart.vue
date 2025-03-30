@@ -175,5 +175,8 @@ const chartOptions = ref({
 .positioning {
   padding-top: 1rem;
   padding-bottom: 3rem;
+  background-color: #d2dbe2;
+  border-radius: 7px;
+  margin-top: 2vh;
 }
 </style>
