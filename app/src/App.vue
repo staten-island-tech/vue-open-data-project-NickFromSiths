@@ -17,7 +17,7 @@ onMounted(() => {
 <template>
   <div class="fullheight">
     <h1 class="title">Homeless population</h1>
-    <h6>will make it look better later</h6>
+
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>

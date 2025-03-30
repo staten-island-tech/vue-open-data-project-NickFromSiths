@@ -9,7 +9,7 @@
       <Doughnut :data="data" :options="options" :key="key" />
     </div>
     <!-- <button @click="console.log('')">work?</button> -->
-    <div class="margin">
+    <div class="fifty">
       <form @submit.prevent="submitted()">
         <input v-model="variable" type="number" min="0" placeholder="Type index number here" />
         <button type="submit">Submit</button>
@@ -38,21 +38,35 @@
   border-radius: 7px;
   margin-top: 10vh;
 }
-.margin {
-  margin-left: 10rem;
+/* .margin {
+  margin: 0rem 5rem 0rem 5rem;
+  width: 50%;
+} */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 5rem;
+  align-items: center;
+}
+input {
+  margin-bottom: 5px;
+}
+button {
+  padding: 0.2rem 1rem 0.3rem 1rem;
 }
 .height {
   height: 100%;
 }
 .right {
   height: 60%;
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 .fifty {
-  width: 600px;
+  width: 50%;
 }
 .e {
   position: absolute;
@@ -90,7 +104,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-let variable = ref(0)
+let variable = ref('')
 let key = 0
 let aray = ref('')
 
