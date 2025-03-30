@@ -20,10 +20,10 @@ onMounted(() => {
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/line">Line Graph</RouterLink>
-        <RouterLink to="/bubble">Bubble Graph</RouterLink>
-        <RouterLink to="/donut">Donut Graph</RouterLink>
+        <div class="border"><RouterLink to="/">Home</RouterLink></div>
+        <div class="border"><RouterLink to="/line">Line Graph</RouterLink></div>
+        <div class="border"><RouterLink to="/bubble">Bubble Graph</RouterLink></div>
+        <div class="border"><RouterLink to="/donut">Donut Graph</RouterLink></div>
       </nav>
     </div>
 
@@ -69,18 +69,25 @@ a {
   font-weight: 500;
   background-color: #d2dbe259;
   border-radius: 5px;
+  width: 120px;
+  padding: 0rem 1rem 0rem 1rem;
+  height: 100%;
 }
 a:hover {
   color: grey;
+  background-color: #c2c9ce5e;
 }
-nav a {
+a:focus {
+  background-color: #afb4b896;
+}
+.border {
   display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  padding: 0 0.125rem;
+  border-left: 1.5px solid var(--color-border);
   text-decoration: none;
 }
 
-nav a:first-of-type {
+.border:first-of-type {
   border: 0;
 } /*
 @media (min-width: 1024px) {
