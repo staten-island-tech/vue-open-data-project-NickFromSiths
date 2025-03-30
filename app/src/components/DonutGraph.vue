@@ -9,14 +9,14 @@
       <Doughnut :data="data" :options="options" :key="key" />
     </div>
     <!-- <button @click="console.log('')">work?</button> -->
-    <div class="fifty">
+    <div class="fiftypercent">
       <form @submit.prevent="submitted()">
         <input v-model="variable" type="number" min="0" placeholder="Type index number here" />
         <button type="submit">Submit</button>
       </form>
     </div>
     <div class="right">
-      <h1>Data</h1>
+      <h1 style="font-weight: 500">Data</h1>
       <h3>Showing results for: {{ dateData }}</h3>
       <h3>Total Individuals: {{ tiisData }}</h3>
       <h3>Men: {{ smisData }}</h3>
@@ -30,13 +30,16 @@
 <style scoped>
 /* https://huemint.com/gradient-10/#palette=becace-a5abaf-fff7f6-cde4e4-a5dae1-009a9a-4b9ea1-4c8e9c-22515e-273951 */
 /* https://huemint.com/gradient-10/#palette=becace-a5abaf-aca6b5-b3958a-f09dcf-b8a5bd-a18cac-996f88-6e3e67-230e38 */
+
 .container {
   height: 55vh;
+  width: 90%;
   display: flex;
   align-items: center;
   background-color: #d2dbe2;
   border-radius: 7px;
-  margin-top: 10vh;
+
+  margin: 10vh 5% 0vh 5%;
 }
 /* .margin {
   margin: 0rem 5rem 0rem 5rem;
@@ -50,10 +53,38 @@ form {
   align-items: center;
 }
 input {
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  border: 3px solid transparent;
+  border-radius: 7px;
+  background-color: #f4fdff;
+  outline: none;
+  color: #959697;
+  transition: border-color 0.3s ease;
+}
+input:focus {
+  border: 3px solid rgba(190, 202, 206, 0.7);
+  background-color: #ececec;
+  transition: 0.1s;
+}
+input:active {
+  border: 3px solid rgba(190, 202, 206, 0.7);
 }
 button {
-  padding: 0.2rem 1rem 0.3rem 1rem;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  border: 3px solid transparent;
+  border-radius: 7px;
+  transition: border 0.3s ease;
+  background-color: #f4fdff;
+  color: #959697;
+}
+
+button:hover {
+  border: 3px solid rgba(190, 202, 206, 0.7);
+}
+button:active {
+  background-color: #ececec;
+  transition: 0.1s;
 }
 .height {
   height: 100%;
@@ -67,12 +98,16 @@ button {
 }
 .fifty {
   width: 50%;
+  padding: 5rem;
+}
+.fiftypercent {
+  width: 50%;
 }
 .e {
   position: absolute;
   width: 100%;
   height: 3rem;
-  top: 7%;
+  top: 4%;
   left: 0%;
   padding: 0rem 15rem 0rem 15rem;
 }
@@ -125,7 +160,7 @@ async function s() {
     show.value = true
     setTimeout(() => {
       show.value = false
-    }, 1500)
+    }, 2000)
   } else {
     console.log('Valid entry.')
     aray.value = b

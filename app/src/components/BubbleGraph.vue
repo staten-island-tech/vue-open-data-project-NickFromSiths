@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Bubble :data="chartData" :options="options" class="positioning" />
+  <div class="positioning">
+    <Bubble :data="chartData" :options="options" />
   </div>
 </template>
 
@@ -123,6 +123,11 @@ const options = ref({
   padding-bottom: 3rem;
   background-color: #d2dbe2;
   border-radius: 7px;
-  margin-top: 2vh;
+  height: 75vh;
+  margin: 2vh 14% 0vh 14%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

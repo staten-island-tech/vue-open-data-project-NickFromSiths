@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Line :data="chartData" :options="chartOptions" class="positioning" />
+  <div class="positioning">
+    <Line :data="chartData" :options="chartOptions" />
     <!-- <button @click="console.log(props.items)">array</button> -->
   </div>
 </template>
@@ -177,6 +177,11 @@ const chartOptions = ref({
   padding-bottom: 3rem;
   background-color: #d2dbe2;
   border-radius: 7px;
-  margin-top: 2vh;
+  height: 75vh;
+  margin: 2vh 14% 0vh 14%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
