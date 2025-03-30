@@ -3,7 +3,10 @@
 #app {
   margin: 0 auto;
   padding: 2rem;
-  font-weight: normal;
+  /* font-weight: normal; */
+}
+body {
+  background-color: #becace;
 }
 /* 
 a,

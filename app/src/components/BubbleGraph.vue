@@ -63,7 +63,7 @@ const chartData = reactive({
     },
     {
       label: 'Women',
-      backgroundColor: '#59a570',
+      backgroundColor: '#956c85',
       data: [],
     },
   ],

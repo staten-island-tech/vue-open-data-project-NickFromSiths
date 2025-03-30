@@ -1,7 +1,7 @@
 <template>
   <div v-if="aray.length > 0" class="container">
     <div class="fifty">
-      <Doughnut :data="data" :options="options" />
+      <Doughnut :data="data" :options="options" :key="key" />
     </div>
     <!-- <button @click="console.log('')">work?</button> -->
     <div class="margin">
@@ -18,7 +18,6 @@
       <h3>Women: {{ swisData }}</h3>
       <h3>Children: {{ tcisData }}</h3>
       <h3>Adult Families: {{ afisData }}</h3>
-      <h6>i got no clue what this last one means</h6>
     </div>
   </div>
 </template>
@@ -26,7 +25,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 let variable = ref(0)
-
+let key = 0
 let aray = ref('')
 
 let link = 'https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=1&$offset=0'
@@ -58,6 +57,7 @@ function submitted() {
   link = `https://data.cityofnewyork.us/resource/k46n-sa2m.json?$limit=1&$offset=${variable.value}`
   s()
   // console.log(link, previouslink)
+  key++
 }
 
 let dateData = ref('')
@@ -111,6 +111,7 @@ const data = reactive({
 const options = ref({
   responsive: true,
   maintainAspectRatio: true,
+  animation: { initial: false },
 })
 </script>
 

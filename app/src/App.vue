@@ -16,7 +16,7 @@ onMounted(() => {
 
 <template>
   <div class="fullheight">
-    <h1>Homeless population</h1>
+    <h1 class="title">Homeless population</h1>
     <h6>will make it look better later</h6>
     <div class="wrapper">
       <nav>
@@ -32,19 +32,22 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.title {
+  text-align: center;
+  font-weight: 900;
+}
+
 .fullheight {
   height: 90vh;
 }
+
+/* ---------------- */
+/*
 header {
   line-height: 1.5;
   max-height: 100vh;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
+*/
 nav {
   width: 100%;
   font-size: 12px;
@@ -54,11 +57,13 @@ nav {
 
 nav a.router-link-exact-active {
   color: black;
-  text-decoration: none;
 }
-
+/*
 nav a.router-link-exact-active:hover {
   background-color: transparent;
+} */
+a {
+  text-decoration: none;
 }
 a:hover {
   color: skyblue;
@@ -72,7 +77,7 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
+} /*
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -93,5 +98,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+} */
 </style>
