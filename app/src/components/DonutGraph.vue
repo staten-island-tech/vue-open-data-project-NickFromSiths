@@ -1,9 +1,9 @@
 <template>
-  <Transition
-    ><div class="e">
+  <div class="e">
+    <Transition>
       <h3 class="e1" v-if="show">Value is too large, try search a smaller value</h3>
-    </div></Transition
-  >
+    </Transition>
+  </div>
   <div v-if="aray.length > 0" class="container">
     <div class="fifty">
       <Doughnut :data="data" :options="options" :key="key" />
@@ -76,14 +76,15 @@
 }
 .v-enter-from {
   opacity: 0;
-  transform: translateY(-60px);
+  transform: translateY(-90px);
 }
-.v-enter {
-  opacity: 1;
-  transform: translateY(0);
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
 }
-.v-enter-active {
-  transition: all 0.3s ease;
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-90px);
 }
 </style>
 
@@ -110,7 +111,7 @@ async function s() {
     show.value = true
     setTimeout(() => {
       show.value = false
-    }, 3000)
+    }, 1500)
   } else {
     console.log('Valid entry.')
     aray.value = b
