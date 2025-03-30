@@ -56,17 +56,22 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: black;
+  color: #dfe4e7;
+  background-color: #2c3e50;
 }
 /*
 nav a.router-link-exact-active:hover {
   background-color: transparent;
 } */
 a {
+  color: black;
   text-decoration: none;
+  font-weight: 500;
+  background-color: #d2dbe259;
+  border-radius: 5px;
 }
 a:hover {
-  color: skyblue;
+  color: grey;
 }
 nav a {
   display: inline-block;

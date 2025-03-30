@@ -70,6 +70,9 @@ input:focus {
 input:active {
   border: 3px solid rgba(190, 202, 206, 0.7);
 }
+input::placeholder {
+  color: #c4c9cb;
+}
 button {
   padding: 0.2rem 1rem 0.2rem 1rem;
   border: 3px solid transparent;
