@@ -28,6 +28,7 @@
 </template>
 
 <style scoped>
+/* https://huemint.com/gradient-10/#palette=becace-a5abaf-f4fdff-d2dbe2-a5dae1-009a9a-4b9ea1-4c8e9c-f9728f-a1214e */
 /* https://huemint.com/gradient-10/#palette=becace-a5abaf-fff7f6-cde4e4-a5dae1-009a9a-4b9ea1-4c8e9c-22515e-273951 */
 /* https://huemint.com/gradient-10/#palette=becace-a5abaf-aca6b5-b3958a-f09dcf-b8a5bd-a18cac-996f88-6e3e67-230e38 */
 
